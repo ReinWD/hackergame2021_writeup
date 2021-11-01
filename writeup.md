@@ -69,7 +69,7 @@ flag{phoneticab}
 直接搜索 `rfc protocol police`，看目录中关于 `reporting` 相关内容 
 看到 `/dev/null` 的时候直接笑出了声，一看果然是今年4月1号发的rfc。
 
-[*The Protocol Police are listening and will take care of it.*](img/police.png)
+![*The Protocol Police are listening and will take care of it.*](img/police.png)
 
 flag{8804d9f3_91f53c077e}
 
@@ -135,7 +135,7 @@ name: "示例 1",
 
 尝试观察第二问`verify`的POST payload，发现`execution`是null，追溯该变量来源，发现是在`runProgram()`过程中第一行填入了`app.programs.IndexInBackup`。该变量在`saveProgram()`时填入了默认值null。而根据前两问真正能够获取到flag的请求，该值不应该为null。由此线索产生了一种思路如下：
 
-[POST payload](img/QCyberCook_1.png)
+![POST payload](img/QCyberCook_1.png)
 
 直接操作`programsBackup`数组，直接把题解丢到这个数组，手动填入`IndexInBackup`变量之后，本地能过win验证，理论上也应该能通过远端验证。实际尝试后发现，一旦使用该方法，远端会回报`recipe`异常，使用debug语句打印之后跟网页显示比对发现，每次回报的`expected recipe`实际上与下一次切换天数之后的recipe一致。于是前去研究`nextDay()`过程生成recipe的方案。
 
@@ -174,11 +174,11 @@ flag{level2_5d09255116ac_1f38829230}
 
 #### 花絮
 其实优化前的第20000个iter就生成了一个几乎解出的方案。 
-[几乎解出](img/almostFinish.png)
-[another one](img/QCyberCook_3.png)
+![几乎解出](img/almostFinish.png)
+![another one](img/QCyberCook_3.png)
 
 程序碰撞的过程其实并不那么高效，但是在这个规模下已经够用了 
-[并不高效](img/QCyberCook_2.png)
+![并不高效](img/QCyberCook_2.png)
 
 ## 看了但是没做的题
 ...TBD
